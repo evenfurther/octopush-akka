@@ -10,13 +10,13 @@ lazy val octopushAkka = project
       scalaVersion := "2.13.6",
       scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature"),
       libraryDependencies ++= Seq(
-        "com.typesafe.akka" %% "akka-actor" % "2.6.15",
-        "com.typesafe.akka" %% "akka-stream" % "2.6.15",
-        "com.typesafe.akka" %% "akka-stream-testkit" % "2.6.15" % "test",
+        "com.typesafe.akka" %% "akka-actor" % "2.6.16",
+        "com.typesafe.akka" %% "akka-stream" % "2.6.16",
+        "com.typesafe.akka" %% "akka-stream-testkit" % "2.6.16" % "test",
         "com.typesafe.akka" %% "akka-http-core" % "10.2.6",
         "com.typesafe.akka" %% "akka-http-xml" % "10.2.6",
-        "com.iheart" %% "ficus" % "1.5.1",
-        "org.specs2" %% "specs2-core" % "4.12.4-js-ec" % "test"
+        "com.iheart" %% "ficus" % "1.5.0",
+        "org.specs2" %% "specs2-core" % "4.12.4" % "test"
       ),
       fork in Test := true,
       scalariformAutoformat := true,
