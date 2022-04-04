@@ -89,7 +89,6 @@ class OctopushSpec extends Specification {
       val success = result.successes.head
       success.recipient must be equalTo "+33601010101"
       success.countryCode must be equalTo "FR"
-      success.cost must be equalTo 0.55
     }
 
   }
@@ -134,7 +133,6 @@ class OctopushSpec extends Specification {
       result.currencyCode must be equalTo "€"
       val success = result.successes.head
       success.recipient must be equalTo "+33601010101"
-      success.cost must be equalTo result.cost
     }
 
     "accept a SMS in test mode with SHA1 checksum" in new ValidOctopushScope {
@@ -146,7 +144,6 @@ class OctopushSpec extends Specification {
       result.currencyCode must be equalTo "€"
       val success = result.successes.head
       success.recipient must be equalTo "+33601010101"
-      success.cost must be equalTo result.cost
     }
 
     "be impossible when attempting to checksum non-existing fields" in new DummyOctopushScope {

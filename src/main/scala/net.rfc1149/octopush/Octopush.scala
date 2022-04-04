@@ -132,7 +132,7 @@ object Octopush {
 
   case class Balance(lowCostFrance: Double, premiumFrance: Double)
 
-  case class SMSSuccess(recipient: String, countryCode: String, cost: Double)
+  case class SMSSuccess(recipient: String, countryCode: String)
 
   // XXX Find definition and include failures
   case class SMSResult(cost: Double, balance: Double,
@@ -160,8 +160,7 @@ object Octopush {
       successes        = (xml \ "successs" \ "success").map { success =>
         SMSSuccess(
           recipient   = (success \ "recipient").text,
-          countryCode = (success \ "country_code").text,
-          cost        = (success \ "cost").text.toDouble)
+          countryCode = (success \ "country_code").text)
       })
   }
 
