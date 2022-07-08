@@ -16,7 +16,7 @@ lazy val octopushAkka = project
         "com.typesafe.akka" %% "akka-http-core" % "10.2.9",
         "com.typesafe.akka" %% "akka-http-xml" % "10.2.9",
         "com.iheart" %% "ficus" % "1.5.2",
-        "org.specs2" %% "specs2-core" % "4.15.0" % "test"
+        "org.specs2" %% "specs2-core" % "4.16.1" % "test"
       ),
       fork in Test := true,
       scalariformAutoformat := true,
