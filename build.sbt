@@ -18,7 +18,7 @@ lazy val octopushAkka = project
         "com.iheart" %% "ficus" % "1.5.2",
         "org.specs2" %% "specs2-core" % "4.16.1" % "test"
       ),
-      fork in Test := true,
+      Test/fork := true,
       scalariformAutoformat := true,
       ScalariformKeys.preferences := ScalariformKeys.preferences.value
         .setPreference(AlignArguments, true)
