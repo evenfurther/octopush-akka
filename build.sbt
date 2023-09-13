@@ -10,7 +10,7 @@ lazy val octopushAkka = project
       scalaVersion := "2.13.11",
       scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature"),
       libraryDependencies ++= Seq(
-        "com.typesafe.akka" %% "akka-actor" % "2.6.20",
+        "com.typesafe.akka" %% "akka-actor" % "2.8.4",
         "com.typesafe.akka" %% "akka-stream" % "2.6.20",
         "com.typesafe.akka" %% "akka-stream-testkit" % "2.6.20" % "test",
         "com.typesafe.akka" %% "akka-http-core" % "10.2.10",
