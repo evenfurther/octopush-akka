@@ -13,8 +13,8 @@ lazy val octopushAkka = project
         "com.typesafe.akka" %% "akka-actor" % "2.8.5",
         "com.typesafe.akka" %% "akka-stream" % "2.8.5",
         "com.typesafe.akka" %% "akka-stream-testkit" % "2.8.5" % "test",
-        "com.typesafe.akka" %% "akka-http-core" % "10.5.2",
-        "com.typesafe.akka" %% "akka-http-xml" % "10.5.2",
+        "com.typesafe.akka" %% "akka-http-core" % "10.5.3",
+        "com.typesafe.akka" %% "akka-http-xml" % "10.5.3",
         "com.iheart" %% "ficus" % "1.5.2",
         "org.specs2" %% "specs2-core" % "4.20.2" % "test"
       ),
