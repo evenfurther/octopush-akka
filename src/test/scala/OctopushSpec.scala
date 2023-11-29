@@ -4,7 +4,7 @@ import net.rfc1149.octopush.{ErrorCodes, Octopush}
 import org.specs2.mutable._
 import org.specs2.specification.Scope
 
-import scala.concurrent.Await
+import scala.concurrent.{Await, ExecutionContext}
 import scala.concurrent.duration._
 
 class OctopushSpec extends Specification {
@@ -13,8 +13,8 @@ class OctopushSpec extends Specification {
 
     val octopush: Octopush
 
-    implicit val system = ActorSystem()
-    implicit val dispatcher = system.dispatcher
+    implicit val system: ActorSystem = ActorSystem()
+    implicit val dispatcher: ExecutionContext = system.dispatcher
 
     override def after = {
       system.terminate()

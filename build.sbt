@@ -7,7 +7,8 @@ lazy val octopushAkka = project
       name := "octopush-akka",
       organization := "net.rfc1149",
       version := "0.0.2",
-      scalaVersion := "2.13.12",
+      crossScalaVersions := List("2.13.12", "3.3.1"),
+      scalaVersion := "3.3.1",
       scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature"),
       libraryDependencies ++= Seq(
         "com.typesafe.akka" %% "akka-actor" % "2.8.5",

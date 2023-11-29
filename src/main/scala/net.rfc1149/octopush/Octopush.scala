@@ -4,6 +4,7 @@ import java.security.MessageDigest
 
 import akka.NotUsed
 import akka.actor.ActorSystem
+import akka.event.LoggingAdapter
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.client.RequestBuilding.Post
 import akka.http.scaladsl.marshallers.xml.ScalaXmlSupport
@@ -13,7 +14,7 @@ import akka.http.scaladsl.unmarshalling.{Unmarshal, Unmarshaller}
 import akka.http.scaladsl.util.FastFuture
 import akka.stream.scaladsl.{Sink, Source}
 
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.duration.Duration
 import scala.util.{Failure, Success}
 import scala.xml.NodeSeq
@@ -22,8 +23,8 @@ class Octopush(userLogin: String, apiKey: String)(implicit system: ActorSystem) 
 
   import Octopush._
 
-  private[this] implicit val executionContext = system.dispatcher
-  private[this] implicit val log = system.log
+  private[this] implicit val executionContext: ExecutionContext = system.dispatcher
+  private[this] implicit val log: LoggingAdapter = system.log
   private[this] val apiPool = Http().cachedHostConnectionPoolHttps[NotUsed]("www.octopush-dm.com")
 
   private[this] def apiRequest[T](path: String, fields: (String, String)*)(implicit ev: Unmarshaller[NodeSeq, T]): Future[T] = {
