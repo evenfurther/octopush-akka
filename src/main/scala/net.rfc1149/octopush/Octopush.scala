@@ -23,12 +23,12 @@ class Octopush(userLogin: String, apiKey: String)(implicit system: ActorSystem) 
 
   import Octopush._
 
-  private[this] implicit val executionContext: ExecutionContext = system.dispatcher
-  private[this] implicit val log: LoggingAdapter = system.log
-  private[this] val apiPool = Http().cachedHostConnectionPoolHttps[NotUsed]("www.octopush-dm.com")
+  private implicit val executionContext: ExecutionContext = system.dispatcher
+  private implicit val log: LoggingAdapter = system.log
+  private val apiPool = Http().cachedHostConnectionPoolHttps[NotUsed]("www.octopush-dm.com")
 
-  private[this] def apiRequest[T](path: String, fields: (String, String)*)(implicit ev: Unmarshaller[NodeSeq, T]): Future[T] = {
-    val formData = FormData(Seq("user_login" -> userLogin, "api_key" -> apiKey) ++ fields: _*)
+  private def apiRequest[T](path: String, fields: (String, String)*)(implicit ev: Unmarshaller[NodeSeq, T]): Future[T] = {
+    val formData = FormData(Seq("user_login" -> userLogin, "api_key" -> apiKey) ++ fields*)
     val request = Post(s"/api/$path", formData).addHeader(Accept(MediaTypes.`application/xml`))
     log.debug("Posting {}", request)
     Source.single((request, NotUsed)).via(apiPool).runWith(Sink.head).map(_._1).flatMap {
@@ -52,7 +52,7 @@ class Octopush(userLogin: String, apiKey: String)(implicit system: ActorSystem) 
 
   def credit(): Future[Double] = apiRequest("credit")(creditUnmarshaller)
 
-  def sms(sms: SMS): Future[SMSResult] = apiRequest("sms", sms.buildParameters.toSeq: _*)(smsResultUnmarshaller)
+  def sms(sms: SMS): Future[SMSResult] = apiRequest("sms", sms.buildParameters.toSeq*)(smsResultUnmarshaller)
 
 }
 
